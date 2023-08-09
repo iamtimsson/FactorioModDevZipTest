@@ -2,6 +2,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 08 Aug 2023
+  Features:
+    - condition check if info.json exists
   Fixes:
     - cantpunishme, https://discord.com/channels/139677590393716737/496003658866098187/1138641837301694526
     - cross platform

@@ -23,6 +23,11 @@ def zip_directory(directory_path, mod_dist):
                 relative_path = os.path.relpath(file_path, directory_path)
                 zipf.write(file_path, relative_path)
 
+# Check if the current directory has a valid info.json file
+if not os.path.exists("info.json"):
+    print("The 'info.json' file is not present in the current directory.")
+    exit()
+
 # Read the JSON file
 with open("info.json", "r") as json_file:
     json_content = json.load(json_file)
