@@ -42,18 +42,19 @@ mod_dist = f"{destination_dir}.zip"
 exclude_directory = '.vs'
 exclude_extensions = ['.ps1', '.py', '.sln']
 
+# Check if the main directory or zip file already exists in Factorio mods folder
+factorio_mods_folder = os.path.expanduser("~/.factorio/mods")  # Linux and macOS
+if os.name == 'nt':  # Windows
+    factorio_mods_folder = os.path.expandvars("%APPDATA%/Factorio/mods")
+
+factorio_mods_path = os.path.join(factorio_mods_folder, mod_dist)
+
 # Check if the main directory or zip file already exists
-if os.path.exists(destination_dir) or os.path.exists(mod_dist):
-    user_input = input("The main directory or zip file already exists. Do you want to proceed? (y/n): ").lower()
+if os.path.exists(factorio_mods_path) or os.path.exists(destination_dir) or os.path.exists(mod_dist):
+    user_input = input("The main directory, zip file, or mod zip already exists. Do you want to proceed? (y/n): ").lower()
     if user_input != 'y':
         print("Operation cancelled.")
         exit()
-    else:
-        # Delete existing main directory and zip file
-        if os.path.exists(destination_dir):
-            shutil.rmtree(destination_dir)
-        if os.path.exists(mod_dist):
-            os.remove(mod_dist)
 
 # Call the function to copy files
 copy_files_with_filter(
@@ -65,13 +66,6 @@ copy_files_with_filter(
 
 # Zip the created directory
 zip_directory(destination_dir, mod_dist)
-
-# Specify the path to the Factorio mods folder
-factorio_mods_folder = os.path.expanduser("~/.factorio/mods")  # Linux and macOS
-if os.name == 'nt':  # Windows
-    factorio_mods_folder = os.path.expandvars("%APPDATA%/Factorio/mods")
-
-factorio_mods_path = os.path.join(factorio_mods_folder, mod_dist)
 
 # Move the new zip file to the Factorio mods folder
 shutil.move(mod_dist, factorio_mods_path)
