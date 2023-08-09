@@ -1,4 +1,13 @@
-# FactorioModDevZipTest
+---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 08 Aug 2023
+  Fixes:
+    - cantpunishme, https://discord.com/channels/139677590393716737/496003658866098187/1138641837301694526
+    - cross platform
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 08 Aug 2023
+  Features:
 1. **Function Definitions:**
    - `copy_files_with_filter(source_dir, destination_dir, exclude_dir, exclude_extensions)`: Recursively copies files while excluding specific directories and file extensions.
    - `zip_directory(directory_path, mod_dist)`: Creates a zip file containing the contents of a specified directory.
@@ -25,6 +34,7 @@
 
 This script automates file copying, zip creation, and deployment for Factorio modders, improving efficiency and reducing manual tasks. It ensures a smoother development and deployment process by handling checks and cleanup steps.
 
-# Credits
-	mr_arson, https://discord.com/channels/139677590393716737/496003658866098187/1138633527399809094
-		git add ., staging area
+Credits:
+  - mr_arson, https://discord.com/channels/139677590393716737/496003658866098187/1138633527399809094
+  - git add ., staging area
+---------------------------------------------------------------------------------------------------
