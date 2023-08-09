@@ -24,3 +24,7 @@
    - Prints the path where the zip was moved and a success message.
 
 This script automates file copying, zip creation, and deployment for Factorio modders, improving efficiency and reducing manual tasks. It ensures a smoother development and deployment process by handling checks and cleanup steps.
+
+# Credits
+	mr_arson, https://discord.com/channels/139677590393716737/496003658866098187/1138633527399809094
+		git add ., staging area
