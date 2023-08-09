@@ -62,7 +62,10 @@ copy_files_with_filter(
 zip_directory(destination_dir, mod_dist)
 
 # Specify the path to the Factorio mods folder
-factorio_mods_folder = os.path.expandvars("$APPDATA/Factorio/mods")
+factorio_mods_folder = os.path.expanduser("~/.factorio/mods")  # Linux and macOS
+if os.name == 'nt':  # Windows
+    factorio_mods_folder = os.path.expandvars("%APPDATA%/Factorio/mods")
+
 factorio_mods_path = os.path.join(factorio_mods_folder, mod_dist)
 
 # Move the new zip file to the Factorio mods folder
@@ -72,4 +75,4 @@ shutil.move(mod_dist, factorio_mods_path)
 shutil.rmtree(destination_dir)
 
 print(f"Zip file moved to Factorio mods folder: {factorio_mods_path}")
-print("Files copied, zipped, moved and directory deleted successfully. Enjoy or die. Or enjoy dieing idk I wanted this to sound much more playful.")
+print("Files copied, zipped, moved, and directory deleted successfully. Enjoy or die. Or enjoy dying, I don't know. I wanted this to sound much more playful.")
