@@ -1,13 +1,13 @@
 #FactorioModDevZipTest
 ---------------------------------------------------------------------------------------------------
 
-Version: 1.0.2
+Version: 1.0.4
 Date: 09 Aug 2023
   Fixes:
     - rearranged logic
     - rereadmed
 
-Version: 1.0.2
+Version: 1.0.3
 Date: 09 Aug 2023
   Fixes:
     - refactor variable names ( i like them less now.. :/ )
