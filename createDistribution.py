@@ -34,23 +34,14 @@ with open("info.json", "r") as json_file:
     name = json_content["name"]
     version = json_content["version"]
 
-# Construct destination directory name
-dest_dir = f"{name}_{version}"
-mod_dist = f"{dest_dir}.zip"
-
-# Specify the directories to exclude and the extensions to exclude
-excl_dirs = ['.vs', dest_dir]
-excl_exts = ['.ps1', '.py', '.sln']
-
-# Create a new directory with the name of dest_dir and copy the files into it
-if not os.path.exists(dest_dir):
-    os.makedirs(dest_dir)
-
-    # Check if the main directory or zip file already exists in Factorio mods folder
+# Check if the main directory or zip file already exists in Factorio mods folder
 factorio_mods_folder = os.path.expanduser("~/.factorio/mods")  # Linux and macOS
 if os.name == 'nt':  # Windows
     factorio_mods_folder = os.path.expandvars("%APPDATA%/Factorio/mods")
 
+# Construct destination directory name
+dest_dir = f"{name}_{version}"
+mod_dist = f"{dest_dir}.zip"
 factorio_mods_path = os.path.join(factorio_mods_folder, mod_dist)
 
 # Check if the main directory or zip file already exists
@@ -59,6 +50,14 @@ if os.path.exists(factorio_mods_path) or os.path.exists(dest_dir) or os.path.exi
     if user_input != 'y':
         print("Operation cancelled.")
         exit()
+
+# Specify the directories to exclude and the extensions to exclude
+excl_dirs = ['.vs', dest_dir]
+excl_exts = ['.ps1', '.py', '.sln']
+
+# Create a new directory with the name of dest_dir and copy the files into it
+if not os.path.exists(dest_dir):
+    os.makedirs(dest_dir)
 
 copy_files_with_filter(
     source_dir=os.path.dirname(os.path.abspath(__file__)),
@@ -70,13 +69,10 @@ copy_files_with_filter(
 # Zip the contents of the created directory
 zip_dir(dest_dir, mod_dist, dest_dir)
 
-# Move the new zip file to the Factorio mods folder
-factorio_mods_folder = os.path.expanduser("~/.factorio/mods")  # Linux and macOS
-if os.name == 'nt':  # Windows
-    factorio_mods_folder = os.path.expandvars("%APPDATA%/Factorio/mods")
-
+# Create the complete path to the mod distribution file within the Factorio mods folder
 factorio_mods_path = os.path.join(factorio_mods_folder, mod_dist)
 
+# Move the new zip file to the Factorio mods folder
 shutil.move(mod_dist, factorio_mods_path)
 
 # Delete the created directory
